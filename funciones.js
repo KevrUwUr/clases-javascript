@@ -5,9 +5,13 @@ function saludar(nombre) {
 }
 console.log(saludar("Kevin")); //* Hola, Kevin
 
+function hola() {
+  console.log('Hola')
+}
+
 //? Expresión de función (Function Expression)
 //? Las expresiones de función no se "levantan" (no hay hoisting), por lo que solo pueden ser usadas después de ser definidas.
-const despedirse = function(nombre) {
+const despedirse = function (nombre) {
   return `Adiós, ${nombre}`;
 };
 console.log(despedirse("Kevin")); //* Adiós, Kevin
@@ -16,19 +20,22 @@ console.log(despedirse("Kevin")); //* Adiós, Kevin
 //? Son funciones sin nombre y suelen usarse como callbacks o funciones que no necesitan reutilización.
 const boton = document.createElement("button");
 boton.textContent = "Click Me";
-boton.addEventListener("click", function() {
+boton.addEventListener("click", function () {
   console.log("Botón clicado");
 });
 document.body.appendChild(boton);
 
 //? Funciones flecha (Arrow Functions)
 //? Son una forma más concisa de escribir funciones y no tienen su propio valor de `this`.
-const multiplicar = (a, b) => a * b;
+const multiplicar = (a, b) => {
+  const respuesta = a * b
+  return respuesta
+};
 console.log(multiplicar(5, 3)); //* 15
- 
+
 //? Función de retorno implícito
 //? Si la función tiene una sola línea de código que retorna un valor, se puede omitir la palabra `return` y las llaves.
-const cuadrado = n => n * n;
+const cuadrado = (n) => n * n;
 console.log(cuadrado(4)); //* 16
 
 //? Función como parámetro (Callback)
@@ -38,15 +45,16 @@ function procesarDatos(nombre, callback) {
   callback(nombre);
 }
 
-procesarDatos("Kevin", function(nombre) {
+procesarDatos("Kevin", function (nombre) {
   console.log(`Datos de ${nombre} procesados.`);
 });
+
 //* Procesando datos de Kevin...
 //* Datos de Kevin procesados.
 
 //? Función autoinvocada (IIFE - Immediately Invoked Function Expression)
 //? Se invoca automáticamente justo después de ser definida.
-(function() {
+(function () {
   console.log("Esto es una función autoinvocada.");
 })();
 //* Esto es una función autoinvocada.
@@ -75,7 +83,7 @@ console.log(gen.next().value); //* 3
 function* generadorInfinito() {
   let i = 0;
   while (true) {
-    yield i++;   //? Produce valores indefinidamente
+    yield i++; //? Produce valores indefinidamente
   }
 }
 
@@ -84,7 +92,6 @@ const infinito = generadorInfinito();
 console.log(infinito.next().value); //* 0
 console.log(infinito.next().value); //* 1
 console.log(infinito.next().value); //* 2
-
 
 //? Función recursiva
 //? Una función recursiva es aquella que se llama a sí misma hasta cumplir una condición de parada.
@@ -96,8 +103,10 @@ console.log(factorial(5)); //* 120
 
 //? Funciones asincrónicas (Async/Await)
 //? Estas funciones permiten manejar código asincrónico de una forma más fácil y legible.
+const funcionAcync = async () => {
+}
 async function obtenerDatos() {
-  const datos = await fetch("https://api.ejemplo.com/datos");
+  const datos = await fetch("https://pokeapi.co/api/v2/pokemon");
   const resultado = await datos.json();
   return resultado;
 }
@@ -110,10 +119,18 @@ function suma(a, b) {
 console.log(suma(2, 3)); //* 5
 
 //? Función de primera clase
-//? Las funciones en JavaScript son de primera clase, lo que significa que se pueden asignar a variables, pasarse como argumentos y retornarse desde otras funciones.
+//? Las funciones en JavaScript son de primera clase, lo que significa que se pueden asignar a variables, pasarse como argumentos y 
+//retornarse desde otras funciones.
 const operaciones = {
+  'nombre': 'Estefania',
   suma: (a, b) => a + b,
   resta: (a, b) => a - b,
   multiplicacion: (a, b) => a * b,
 };
 console.log(operaciones.suma(5, 3)); //* 8
+console.log(operaciones.nombre); //* Estefania
+
+
+const test = [1,2,4,5]
+
+test.pop(2)

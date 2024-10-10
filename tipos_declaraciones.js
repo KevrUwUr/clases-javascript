@@ -1,6 +1,7 @@
 //? UPPER_CASE para declarar constantes
 
 const NOMBRE = 'Estefania Valencia'
+const VARIABLE_CONSTANTE = 123
 
 //? Se usa para declarar clases
 

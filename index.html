@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Funciones en JavaScript</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+      }
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+      button {
+        background-color: #294f6e;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #57a7e9;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ejemplos de Funciones en JavaScript</h1>
+
+    <div class="container">
+      <button id="saludarBtn" onclick="saludar()">Saludar</button>
+      <button id="despedirseBtn">Despedirse</button>
+      <button id="multiplicarBtn">Multiplicar</button>
+      <button id="cuadradoBtn">Cuadrado</button>
+      <button id="procesarDatosBtn">Procesar Datos</button>
+      <button id="autoinvocadaBtn">Función Autoinvocada</button>
+      <button id="saludarConEdadBtn">Saludar con Edad</button>
+      <button id="generadorBtn">Generador</button>
+      <button id="generadorInfinitoBtn">Generador Infinito</button>
+      <button id="factorialBtn">Factorial</button>
+      <button id="obtenerDatosBtn">Obtener Datos (Async)</button>
+      <button id="sumaBtn">Suma</button>
+      <button id="operacionesBtn">Operaciones de Primera Clase</button>
+    </div>
+
+    <script>
+      // Declaración de funciones
+      function saludar(nombre) {
+        return `Hola, ${nombre}`;
+      }
+
+      // Expresión de función
+      const despedirse = function (nombre) {
+        return `Adiós, ${nombre}`;
+      };
+
+      // Funciones flecha
+      const multiplicar = (a, b) => a * b;
+
+      // Función de retorno implícito
+      const cuadrado = (n) => n * n;
+
+      // Función como parámetro (Callback)
+      function procesarDatos(nombre, callback) {
+        console.log(`Procesando datos de ${nombre}...`);
+        callback(nombre);
+      }
+
+      // Función autoinvocada (IIFE)
+      function ejecutarAutoinvocada() {
+        (function () {
+          console.log("Esto es una función autoinvocada.");
+        })();
+      }
+
+      // Funciones con valores por defecto
+      function saludarConEdad(nombre = "Invitado", edad = 18) {
+        return `Hola ${nombre}, tienes ${edad} años.`;
+      }
+
+      // Funciones generadoras
+      function* generador() {
+        yield 1;
+        yield 2;
+        yield 3;
+      }
+
+      function* generadorInfinito() {
+        let i = 0;
+        while (true) {
+          yield i++;
+        }
+      }
+
+      // Función recursiva
+      function factorial(n) {
+        if (n === 0) return 1;
+        return n * factorial(n - 1);
+      }
+
+      // Funciones asincrónicas
+      async function obtenerDatos() {
+        const datos = await fetch("https://pokeapi.co/api/v2/pokemon");
+        const resultado = await datos.json();
+const pokemon = resultado [0]
+        console.log(pokemon.name);
+
+        return resultado;
+      }
+
+      // Función pura
+      function suma(a, b) {
+        return a + b;
+      }
+
+      // Función de primera clase
+      const operaciones = {
+        suma: (a, b) => a + b,
+        resta: (a, b) => a - b,
+        multiplicacion: (a, b) => a * b,
+      };
+
+      // Eventos para los botones
+      document
+        .getElementById("saludarBtn")
+        .addEventListener("click", function () {
+          console.log(saludar("Kevin"));
+        });
+
+      document
+        .getElementById("despedirseBtn")
+        .addEventListener("click", function () {
+          console.log(despedirse("Kevin"));
+        });
+
+      document
+        .getElementById("multiplicarBtn")
+        .addEventListener("click", function () {
+          console.log(multiplicar(5, 3));
+        });
+
+      document
+        .getElementById("cuadradoBtn")
+        .addEventListener("click", function () {
+          console.log(cuadrado(4));
+        });
+
+      document
+        .getElementById("procesarDatosBtn")
+        .addEventListener("click", function () {
+          procesarDatos("Kevin", function (nombre) {
+            console.log(`Datos de ${nombre} procesados.`);
+          });
+        });
+
+      document
+        .getElementById("autoinvocadaBtn")
+        .addEventListener("click", ejecutarAutoinvocada);
+
+      document
+        .getElementById("saludarConEdadBtn")
+        .addEventListener("click", function () {
+          console.log(saludarConEdad());
+          console.log(saludarConEdad("Kevin", 25));
+        });
+
+      document
+        .getElementById("generadorBtn")
+        .addEventListener("click", function () {
+          const gen = generador();
+          console.log(gen.next().value);
+          console.log(gen.next().value);
+          console.log(gen.next().value);
+        });
+
+      document
+        .getElementById("generadorInfinitoBtn")
+        .addEventListener("click", function () {
+          const infinito = generadorInfinito();
+          console.log(infinito.next().value);
+          console.log(infinito.next().value);
+          console.log(infinito.next().value);
+          console.log(infinito.next().value);
+          console.log(infinito.next().value);
+          console.log(infinito.next().value);
+          console.log(infinito.next().value);
+          console.log(infinito.next().value);
+        });
+
+      document
+        .getElementById("factorialBtn")
+        .addEventListener("click", function () {
+          console.log(factorial(5));
+        });
+
+      document
+        .getElementById("obtenerDatosBtn")
+        .addEventListener("click", async function () {
+          await obtenerDatos();
+        });
+
+      document.getElementById("sumaBtn").addEventListener("click", function () {
+        console.log(suma(2, 3));
+      });
+
+      document
+        .getElementById("operacionesBtn")
+        .addEventListener("click", function () {
+          console.log(operaciones.suma(5, 3));
+          console.log(operaciones.resta(10, 3));
+          console.log(operaciones.multiplicacion(4, 2));
+        });
+    </script>
+  </body>
+</html>
